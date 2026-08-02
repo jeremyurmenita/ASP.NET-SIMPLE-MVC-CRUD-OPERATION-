@@ -1,0 +1,74 @@
+﻿@model _231895urmenitaMVCCRUDOPERATION.Models._231895urmenitaSTUDENT
+@using _231895urmenitaMVCCRUDOPERATION.Models
+@using Microsoft.AspNetCore.Mvc.Rendering
+
+@{
+    ViewData["Title"] = "Create Student";
+    // Cast the courses from ViewBag
+    var courses = (List<_231895urmenitaCOURSE>)ViewBag.Courses;
+}
+
+<h2>Create Student</h2>
+
+<form asp-action="Create" method="post">
+    @Html.AntiForgeryToken()
+
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+    <div class="row">
+        <div class="col-md-4 mb-3">
+            <label asp-for="FNAME" class="form-label"></label>
+            <input asp-for="FNAME" class="form-control" />
+            <span asp-validation-for="FNAME" class="text-danger"></span>
+        </div>
+
+        <div class="col-md-4 mb-3">
+            <label asp-for="LNAME" class="form-label"></label>
+            <input asp-for="LNAME" class="form-control" />
+            <span asp-validation-for="LNAME" class="text-danger"></span>
+        </div>
+
+        <div class="col-md-4 mb-3">
+            <label asp-for="MNAME" class="form-label"></label>
+            <input asp-for="MNAME" class="form-control" />
+            <span asp-validation-for="MNAME" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4 mb-3">
+            <label asp-for="BDAY" class="form-label"></label>
+            <input asp-for="BDAY" type="date" class="form-control" />
+            <span asp-validation-for="BDAY" class="text-danger"></span>
+        </div>
+
+        <div class="col-md-4 mb-3">
+            <label asp-for="GENDER" class="form-label"></label>
+            <select asp-for="GENDER" class="form-select">
+                <option value="">-- Select Gender --</option>
+                <option>Male</option>
+                <option>Female</option>
+            </select>
+            <span asp-validation-for="GENDER" class="text-danger"></span>
+        </div>
+
+        <div class="col-md-4 mb-3">
+            <label asp-for="COURSEID" class="form-label"></label>
+            <select asp-for="COURSEID"
+                    class="form-select"
+                    asp-items="@(new SelectList(courses, "COURSEID", "DESCRIPTION"))">
+                <option value="">-- Select Course --</option>
+            </select>
+            <span asp-validation-for="COURSEID" class="text-danger"></span>
+        </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Save</button>
+    <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+</form>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

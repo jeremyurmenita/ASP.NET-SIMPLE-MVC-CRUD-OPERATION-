@@ -1,0 +1,26 @@
+﻿@model _231895urmenitaMVCCRUDOPERATION.Models._231895urmenitaCOURSE
+
+@{
+    ViewData["Title"] = "Delete Course";
+}
+
+<h2>Delete Course</h2>
+
+<!-- Show any error (like “students enrolled”) -->
+<div asp-validation-summary="All" class="text-danger"></div>
+
+<h4>Are you sure you want to delete this course?</h4>
+
+<div class="card mt-3">
+    <div class="card-body">
+        <p><strong>Course:</strong> @Model.DESCRIPTION</p>
+
+        <form asp-action="Delete" method="post">
+            @Html.AntiForgeryToken()
+            <input type="hidden" asp-for="COURSEID" />
+
+            <button type="submit" class="btn btn-danger">Delete</button>
+            <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+        </form>
+    </div>
+</div>

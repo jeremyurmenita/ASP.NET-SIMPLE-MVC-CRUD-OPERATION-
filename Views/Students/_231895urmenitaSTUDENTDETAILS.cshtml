@@ -1,0 +1,15 @@
+﻿@model _231895urmenitaMVCCRUDOPERATION.Models._231895urmenitaSTUDENT
+
+<h2>Student Details</h2>
+
+<div class="card mt-3">
+    <div class="card-body">
+        <p><strong>Name:</strong> @Model.FNAME @Model.MNAME @Model.LNAME</p>
+        <p><strong>Birthday:</strong> @Model.BDAY.ToShortDateString()</p>
+        <p><strong>Gender:</strong> @Model.GENDER</p>
+        <p><strong>Course:</strong> @Model.Course?.DESCRIPTION</p>
+
+        <a asp-action="Edit" asp-route-id="@Model.STUDENTID" class="btn btn-primary">Edit</a>
+        <a asp-action="Index" class="btn btn-secondary">Back</a>
+    </div>
+</div>

@@ -1,0 +1,39 @@
+﻿@model IEnumerable<_231895urmenitaMVCCRUDOPERATION.Models._231895urmenitaSTUDENT>
+
+@{
+    ViewData["Title"] = "Students";
+}
+
+<h2>Students</h2>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Add New Student</a>
+</p>
+
+<table class="table table-striped table-hover mt-3">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Birthday</th>
+            <th>Gender</th>
+            <th>Course</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var s in Model)
+        {
+            <tr>
+                <td>@s.LNAME, @s.FNAME @s.MNAME</td>
+                <td>@s.BDAY.ToShortDateString()</td>
+                <td>@s.GENDER</td>
+                <td>@s.Course?.DESCRIPTION</td>
+                <td>
+                    <a asp-action="Details" asp-route-id="@s.STUDENTID">Details</a> |
+                    <a asp-action="Edit" asp-route-id="@s.STUDENTID">Edit</a> |
+                    <a asp-action="Delete" asp-route-id="@s.STUDENTID">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

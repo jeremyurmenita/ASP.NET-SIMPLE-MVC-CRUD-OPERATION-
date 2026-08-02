@@ -1,0 +1,61 @@
+﻿@model _231895urmenitaMVCCRUDOPERATION.Models._231895urmenitaSTUDENT
+
+@{
+    ViewData["Title"] = "Edit Student";
+    var courses = ViewBag.Courses as IEnumerable<_231895urmenitaMVCCRUDOPERATION.Models._231895urmenitaCOURSE>;
+}
+
+<h2>Edit Student</h2>
+
+<form asp-action="Edit" method="post">
+
+    <input type="hidden" asp-for="STUDENTID" />
+
+    <div class="row">
+        <div class="col-md-4 mb-3">
+            <label asp-for="FNAME" class="form-label"></label>
+            <input asp-for="FNAME" class="form-control" />
+        </div>
+
+        <div class="col-md-4 mb-3">
+            <label asp-for="LNAME" class="form-label"></label>
+            <input asp-for="LNAME" class="form-control" />
+        </div>
+
+        <div class="col-md-4 mb-3">
+            <label asp-for="MNAME" class="form-label"></label>
+            <input asp-for="MNAME" class="form-control" />
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4 mb-3">
+            <label asp-for="BDAY" class="form-label"></label>
+            <input asp-for="BDAY" type="date" class="form-control" />
+        </div>
+
+        <div class="col-md-4 mb-3">
+            <label asp-for="GENDER" class="form-label"></label>
+            <select asp-for="GENDER" class="form-select">
+                <option>Male</option>
+                <option>Female</option>
+            </select>
+        </div>
+
+        <div class="col-md-4 mb-3">
+            <label asp-for="COURSEID" class="form-label"></label>
+            <select asp-for="COURSEID" class="form-select">
+                @foreach (var c in courses)
+                {
+                    <option value="@c.COURSEID" selected="@(Model.COURSEID == c.COURSEID)">
+                        @c.DESCRIPTION
+                    </option>
+                }
+            </select>
+        </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Save</button>
+    <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+
+</form>
